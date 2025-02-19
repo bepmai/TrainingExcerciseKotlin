@@ -3,8 +3,12 @@ Nếu số vừa nhập vào là một số lớn hơn hoặc bằng 0, ngược
 fun main(){
     print("Nhập số: ")
     val input = readln();
+    val num= input.toIntOrNull()
 
-    val num:Int = input.toInt()
+    if (num == null) {
+        println("Dữ liệu nhập vào không hợp lệ!")
+        return
+    }
 
     if(num >=0)
         println("Đây là số nguyên dương")

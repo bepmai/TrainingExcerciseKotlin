@@ -3,13 +3,13 @@ Chương trình sẽ kiểm tra 3 số này có phải là 3 cạnh của một 
 fun main(){
     println("Nhập vào 3 số thực:")
     print("a: ")
-    val a = readln()?.toDoubleOrNull()
+    val a = readln().toDoubleOrNull()
 
     print("b: ")
-    val b = readln()?.toDoubleOrNull()
+    val b = readln().toDoubleOrNull()
 
     print("c: ")
-    val c = readln()?.toDoubleOrNull()
+    val c = readln().toDoubleOrNull()
 
     if (a == null || b == null || c == null) {
         println("Dữ liệu nhập vào không hợp lệ!")
