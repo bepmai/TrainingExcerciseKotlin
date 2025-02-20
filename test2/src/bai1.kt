@@ -48,7 +48,7 @@ class StoreManagement {
 
         if (category != null) {
             println("Danh sách sản phẩm trong danh mục ${category.name}:")
-            category.products.forEach { println("${it.id} - ${it.name} - ${it.price} VND - ${it.origin}") }
+            category.products.forEach { println("mã: ${it.id} - tên: ${it.name} - giá: ${it.price} VND - nguồn gốc${it.origin}") }
         } else {
             println("Không tìm thấy danh mục!")
         }
@@ -110,7 +110,7 @@ class StoreManagement {
 
         if (chineseProducts.isNotEmpty()) {
             println("Danh sách sản phẩm có xuất xứ từ Trung Quốc:")
-            chineseProducts.forEach { println("${it.id} - ${it.name} - ${it.price} VND") }
+            chineseProducts.forEach { println("mã: ${it.id} - tên: ${it.name} - nguồn gốc: ${it.price} VND") }
         } else {
             println("Không có sản phẩm nào có xuất xứ từ Trung Quốc.")
         }
