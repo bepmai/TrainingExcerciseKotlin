@@ -1,6 +1,6 @@
 package model
 
-data class Employmen(var id: String, var name: String, private var productQuantity: Int){
+data class Employee(var id: String, var name: String, private var productQuantity: Int){
 
     init {
         if (productQuantity < 0) {
