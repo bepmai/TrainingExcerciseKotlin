@@ -1,42 +1,10 @@
+package bai2
+
 import kotlin.math.PI
 import kotlin.math.pow
 
-open class Point(var x: Double, var y: Double) {
-    override fun toString(): String {
-        return "[$x, $y]"
-    }
-}
-
-class Circle(x: Double, y: Double, private var radius: Double) : Point(x, y) {
-    init {
-        setRadius(radius)
-    }
-
-    fun setRadius(radius: Double) {
-        if (radius > 0) {
-            this.radius = radius
-        } else {
-           println("Bán kính phải lớn hơn 0 và không được để trống")
-        }
-    }
-
-    fun getDiameter(): Double {
-        return 2 * radius
-    }
-
-    fun getCircumference(): Double {
-        return 2 * PI * radius
-    }
-
-    fun getArea(): Double {
-        return PI * radius.pow(2)
-    }
-
-    override fun toString(): String {
-        return "Hình tròn(Tọa độ=${super.toString()}, bán kính=$radius)"
-    }
-}
-
+import bai2.model.Point
+import bai2.model.Circle
 fun main() {
     print("Nhập số lượng hình tròn: ")
     val n = readln().toInt()

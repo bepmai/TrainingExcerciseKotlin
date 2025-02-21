@@ -1,8 +1,7 @@
-class Product(var id: String, var name: String, var price: Double, var origin: String)
+package bai1
 
-class Category(var id: String, var name: String) {
-    val products: MutableList<Product> = mutableListOf()
-}
+import Category
+import bai1.model.Product
 
 class StoreManagement {
     private val categories = mutableListOf<Category>()
