@@ -1,18 +1,18 @@
 package model
 
-data class Employmen(var id: String, var name: String, private var product_quantity: Int){
+data class Employmen(var id: String, var name: String, private var productQuantity: Int){
 
     init {
-        if (product_quantity < 0) {
-            this.product_quantity = 0
+        if (productQuantity < 0) {
+            this.productQuantity = 0
         }
     }
 
-    fun setProductQuantity(product_quantity: Int) {
-        this.product_quantity = if (product_quantity >= 0) product_quantity else 0
+    fun setProductQuantity(productQuantity: Int) {
+        this.productQuantity = if (productQuantity >= 0) productQuantity else 0
     }
 
     fun getProductQuantity(): Int {
-        return product_quantity
+        return productQuantity
     }
 }
