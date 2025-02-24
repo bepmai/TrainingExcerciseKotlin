@@ -10,12 +10,12 @@ abstract class BaseEmployee(val employee: Employee) {
 }
 
 // Inheritance - kế thừa
-class OfficeEmployee(data: Employee, private val monthlySalary: Double) : BaseEmployee(data) {
+class OfficeEmployee(employee: Employee, private val monthlySalary: Double) : BaseEmployee(employee) {
     override fun calculateSalary(): Double = monthlySalary
 }
 
 // Polymorphism - đa hình
-class TechnicalEmployee(data: Employee, private val hourlyRate: Double, private val hoursWorked: Int) : BaseEmployee(data) {
+class TechnicalEmployee(employee: Employee, private val hourlyRate: Double, private val hoursWorked: Int) : BaseEmployee(employee) {
     override fun calculateSalary(): Double = hourlyRate * hoursWorked
 
     override fun showInfo() {
