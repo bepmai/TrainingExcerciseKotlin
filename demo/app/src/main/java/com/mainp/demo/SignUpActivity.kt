@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.mainp.demo.utils.showToast
 import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
@@ -55,23 +56,23 @@ class SignUpActivity : AppCompatActivity() {
     private fun validateInputs(firstName: String, lastName: String, email: String, password: String): Boolean {
         when {
             firstName.isEmpty() -> {
-                showToast("First name must not be empty")
+                showToast(getString(R.string.first_name_must_not_be_empty))
                 return false
             }
             lastName.isEmpty() -> {
-                showToast("Last name must not be empty")
+                showToast(getString(R.string.last_name_must_not_be_empty))
                 return false
             }
             email.isEmpty() -> {
-                showToast("Email must not be empty")
+                showToast(getString(R.string.email_must_not_be_empty))
                 return false
             }
             !isValidEmail(email) -> {
-                showToast("Email is not valid")
+                showToast(getString(R.string.email_is_not_valid))
                 return false
             }
             password.isEmpty() -> {
-                showToast("Password must not be empty")
+                showToast(getString(R.string.password_must_not_be_empty))
                 return false
             }
             else -> return true
@@ -83,7 +84,4 @@ class SignUpActivity : AppCompatActivity() {
         return emailPattern.matcher(email).matches()
     }
 
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
 }

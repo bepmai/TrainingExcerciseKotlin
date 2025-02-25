@@ -12,4 +12,10 @@
     <string name="lastName">Last Name</string>
     <string name="createAccount">Create Account</string>
     <string name="haveAccount">Alreadly have an account ?</string>
+    <string name="first_name_must_not_be_empty">First name must not be empty</string>
+    <string name="last_name_must_not_be_empty">Last name must not be empty</string>
+    <string name="email_must_not_be_empty">Email must not be empty</string>
+    <string name="email_is_not_valid">Email is not valid</string>
+    <string name="password_must_not_be_empty">Password must not be empty</string>
+
 </resources>
