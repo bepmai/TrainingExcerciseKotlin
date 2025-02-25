@@ -1,0 +1,35 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.Demo" parent="Theme.Material3.DayNight.NoActionBar">
+    </style>
+
+    <style name="Theme.Demo" parent="Base.Theme.Demo" />
+
+    <style name="base_font">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="font_regular" parent="base_font">
+        <item name="android:fontFamily">@font/rubik_regular</item>
+    </style>
+
+    <style name="font_semi_bold" parent="base_font">
+        <item name="android:fontFamily">@font/rubik_semi_bold</item>
+    </style>
+
+    <style name="text_base_font_16" parent="base_font">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="text_semi_bold_24" parent="font_semi_bold">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="text_semi_bold_16" parent="font_semi_bold">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="text_semi_bold_14" parent="font_semi_bold">
+        <item name="android:textSize">14sp</item>
+    </style>
+</resources>

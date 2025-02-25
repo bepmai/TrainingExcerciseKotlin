@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">demo</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgetPass">Forget Password ?</string>
+    <string name="btnLogin">Login</string>
+    <string name="or">Or</string>
+    <string name="dontAccount">Dont have an Accont ?</string>
+    <string name="signup">Sign Up</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="createAccount">Create Account</string>
+    <string name="haveAccount">Alreadly have an account ?</string>
+</resources>
