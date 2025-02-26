@@ -1,0 +1,46 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.SleepStories" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.SleepStories" parent="Base.Theme.SleepStories" />
+
+    <style name="base_font">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="font_garamond_premier_pro_semibold" parent="base_font">
+        <item name="android:fontFamily">@font/garamond_premier_pro_semibold</item>
+    </style>
+
+    <style name="text_garamond_premier_pro_semibold_36" parent="font_garamond_premier_pro_semibold">
+        <item name="android:textSize">36sp</item>
+    </style>
+
+    <style name="font_helvetica_neue_bold" parent="base_font">
+        <item name="android:fontFamily">@font/helvetica_neue_bold</item>
+    </style>
+
+    <style name="text_helvetica_neue_bold_18" parent="font_helvetica_neue_bold">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="text_helvetica_neue_bold_28" parent="font_helvetica_neue_bold">
+        <item name="android:textSize">28sp</item>
+    </style>
+    
+    <style name="font_helvetica_neue_roman" parent="base_font">
+        <item name="android:fontFamily">@font/helvetica_neue_roman</item>
+    </style>
+
+    <style name="text_helvetica_neue_roman_11" parent="font_helvetica_neue_roman">
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="text_helvetica_neue_roman_16" parent="font_helvetica_neue_roman">
+        <item name="android:textSize">16sp</item>
+    </style>
+</resources>

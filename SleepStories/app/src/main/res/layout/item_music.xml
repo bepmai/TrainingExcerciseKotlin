@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="@android:color/transparent">
+        <ImageView
+            android:id="@+id/IVimage"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_moon_pink_cloud_sleep" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/TVname"
+        style="@style/text_helvetica_neue_bold_18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_gravity="left"
+        android:layout_marginTop="6dp"
+        android:text="Night Island" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_gravity="left">
+
+        <TextView
+            android:id="@+id/TVtime"
+            style="@style/text_helvetica_neue_roman_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_400"
+            android:text="45 min | " />
+
+        <TextView
+            android:id="@+id/TVcategory"
+            style="@style/text_helvetica_neue_roman_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_400"
+            android:layout_marginStart="8dp"
+            android:text="SLEEP MUSIC" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SleepStories</string>
+    
+    <string name="sleep_stories">Sleep stories</string>
+    <string name="soothing_bedtime_stories">Soothing bedtime stories to help you fall</string>
+    <string name="deep_natural">into a deep and natural sleep</string>
+    <string name="the_ocean_moon">The Ocean Moon</string>
+    <string name="non_stop_8">Non-stop 8- hour mixes of our</string>
+    <string name="most_popular_sleep_audio">most popular sleep audio</string>
+</resources>
