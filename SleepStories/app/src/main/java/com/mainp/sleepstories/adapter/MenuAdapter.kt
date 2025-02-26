@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import com.mainp.sleepstories.model.Menu
 import com.mainp.sleepstories.R
 
-class AdapterMenuClass(private val menu: ArrayList<Menu>) : RecyclerView.Adapter<AdapterMenuClass.ViewHolderClass>(){
+class MenuAdapter(private val menu: ArrayList<Menu>) : RecyclerView.Adapter<MenuAdapter.ViewHolderClass>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_menu, parent, false)
         return ViewHolderClass(itemView)

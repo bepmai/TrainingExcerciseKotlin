@@ -8,8 +8,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.mainp.sleepstories.adapter.AdapterMenuClass
-import com.mainp.sleepstories.adapter.AdapterMusicClass
+import com.mainp.sleepstories.adapter.MenuAdapter
+import com.mainp.sleepstories.adapter.MusicAdapter
 import com.mainp.sleepstories.model.Menu
 import com.mainp.sleepstories.model.Music
 
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var dataListMenu: ArrayList<Menu>
     lateinit var imageListMenu: Array<Int>
     lateinit var titleListMenu: Array<String>
-    private lateinit var myAdapterMenu: AdapterMenuClass
+    private lateinit var myAdapterMenu: MenuAdapter
 
     private lateinit var recyclerViewMusic: RecyclerView
     private lateinit var dataListMusic: ArrayList<Music>
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var nameListMusic: Array<String>
     lateinit var timeListMusic: Array<String>
     lateinit var categoryListMusic: Array<String>
-    private lateinit var myAdapterMusic: AdapterMusicClass
+    private lateinit var myAdapterMusic: MusicAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         dataListMenu = arrayListOf()
         getDataMenu()
 
-        myAdapterMenu = AdapterMenuClass(dataListMenu)
+        myAdapterMenu = MenuAdapter(dataListMenu)
         recyclerViewMenu.adapter = myAdapterMenu
 
 //
@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         dataListMusic = arrayListOf()
         getDataMusic()
 
-        myAdapterMusic = AdapterMusicClass(dataListMusic)
+        myAdapterMusic = MusicAdapter(dataListMusic)
         recyclerViewMusic.adapter = myAdapterMusic
     }
 

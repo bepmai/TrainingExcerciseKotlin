@@ -9,7 +9,7 @@ import android.view.View
 import com.mainp.sleepstories.model.Music
 import com.mainp.sleepstories.R
 
-class AdapterMusicClass(private val music: ArrayList<Music>) : RecyclerView.Adapter<AdapterMusicClass.ViewHolderClass>(){
+class MusicAdapter(private val music: ArrayList<Music>) : RecyclerView.Adapter<MusicAdapter.ViewHolderClass>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_music, parent, false)
         return ViewHolderClass(itemView)

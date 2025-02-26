@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/bg_container"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -69,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/bg_the_ocean_moon"
+                android:background="@drawable/bg_screen"
                 android:gravity="center">
 
                 <ImageView
