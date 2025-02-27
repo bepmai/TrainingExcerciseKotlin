@@ -38,7 +38,7 @@ class MenuAdapter(private val menu: ArrayList<Menu>) : RecyclerView.Adapter<Menu
         return menu.size
     }
     class ViewHolderClass(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val rvImage: ImageView = itemView.findViewById(R.id.IVimage)
-        val rvTitle: TextView = itemView.findViewById(R.id.TVtitle)
+        val rvImage: ImageView = itemView.findViewById(R.id.ivImage)
+        val rvTitle: TextView = itemView.findViewById(R.id.tvIitle)
     }
 }
