@@ -10,35 +10,35 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.mainp.sleepstories.model.Menu
 import com.mainp.sleepstories.R
+import com.mainp.sleepstories.databinding.ItemMenuBinding
+import com.mainp.sleepstories.databinding.ItemMusicBinding
 
 class MenuAdapter(private val menu: ArrayList<Menu>) : RecyclerView.Adapter<MenuAdapter.ViewHolderClass>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_menu, parent, false)
-        return ViewHolderClass(itemView)
+        return ViewHolderClass(ItemMenuBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        ))
     }
     override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
         val currentItem = menu[position]
-        holder.rvImage.setImageResource(currentItem.icon)
-        holder.rvTitle.text = currentItem.title
-
-        if (holder.itemView is CardView) {
-            val cardView = holder.itemView as CardView
-            if (position in listOf(1, 2, 3, 4)) {
-                cardView.setCardBackgroundColor(ContextCompat.getColor(cardView.context,
-                    R.color.deepPurple_A200
-                ))
-            } else {
-                cardView.setCardBackgroundColor(ContextCompat.getColor(cardView.context,
-                    R.color.indigo_400
-                ))
-            }
-        }
+        holder.binding.item = currentItem
+//        if (currentItem is CardView) {
+//            val cardView = holder.itemView as CardView
+//            if (position in listOf(1, 2, 3, 4)) {
+//                cardView.setCardBackgroundColor(ContextCompat.getColor(cardView.context,
+//                    R.color.deepPurple_A200
+//                ))
+//            } else {
+//                cardView.setCardBackgroundColor(ContextCompat.getColor(cardView.context,
+//                    R.color.indigo_400
+//                ))
+//            }
+//        }
     }
     override fun getItemCount(): Int {
         return menu.size
     }
-    class ViewHolderClass(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val rvImage: ImageView = itemView.findViewById(R.id.ivImage)
-        val rvTitle: TextView = itemView.findViewById(R.id.tvIitle)
-    }
+    class ViewHolderClass(val binding: ItemMenuBinding): RecyclerView.ViewHolder(binding.root)
 }

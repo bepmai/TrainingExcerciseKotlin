@@ -1,6 +1,7 @@
 import model.Employee
 
 // Abstraction - trừu tượng
+// chung chung
 abstract class BaseEmployee(val employee: Employee) {
     abstract fun calculateSalary(): Double
 
@@ -9,9 +10,14 @@ abstract class BaseEmployee(val employee: Employee) {
     }
 }
 
-// Inheritance - kế thừa
+// Inheritance - kế thừa - co the them tu khoa open o dau
 class OfficeEmployee(employee: Employee, private val monthlySalary: Double) : BaseEmployee(employee) {
     override fun calculateSalary(): Double = monthlySalary
+
+    override fun showInfo() {
+       // super.showInfo() // thực hiện phương thức của cha
+        println("toi la nhan vien office")
+    }
 }
 
 // Polymorphism - đa hình
@@ -21,6 +27,9 @@ class TechnicalEmployee(employee: Employee, private val hourlyRate: Double, priv
     override fun showInfo() {
         super.showInfo()
         println("Giờ làm việc: $hoursWorked giờ")
+    }
+    fun showInfo(text:String){ // nap chong - trung ten hoac khac tham so truyen vao
+
     }
 }
 
