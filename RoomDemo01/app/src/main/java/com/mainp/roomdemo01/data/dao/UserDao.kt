@@ -9,9 +9,9 @@ import com.mainp.roomdemo01.data.model.User
 @Dao
 interface UserDao {
     @Query("SELECT * FROM users")
-    fun getAllUser() : LiveData<List<User>>
+    fun getAllUsers() : LiveData<List<User>>
 
     @Insert
-    fun insertUser(user: User)
+    fun insert(user: User)
 
 }

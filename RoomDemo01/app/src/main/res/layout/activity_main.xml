@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    <data>
+        <variable
+            name="user"
+            type="com.mainp.roomdemo01.data.model.User" />
+    </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -17,10 +22,12 @@
             android:text="@string/userName"/>
 
         <EditText
+            android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edt"
             android:paddingVertical="20dp"
+            android:text="@{user.name}"
             android:hint="@string/userName"/>
 
         <TextView
@@ -30,19 +37,34 @@
             android:text="@string/age"/>
 
         <EditText
+            android:id="@+id/etAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edt"
+            android:text="@{String.valueOf(user.age)}"
             android:paddingVertical="20dp"
             android:hint="@string/age"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAddUser"
+            android:layout_marginTop="20dp"
             android:background="@drawable/bg_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:text="Thêm"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="hien thi"
+            android:layout_marginTop="20dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" />
 
     </LinearLayout>
 </layout>

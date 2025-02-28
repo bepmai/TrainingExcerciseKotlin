@@ -7,11 +7,11 @@ import com.mainp.roomdemo01.data.model.User
 
 class UserRepository(private val userDao: UserDao) {
 
-//    suspend fun insert(user: User) {
-//        userDao.insert(user)
-//    }
-//
-//    fun getAllUsers(): LiveData<List<User>> {
-//        return userDao.getAllUsers()
-//    }
+    suspend fun insertUser(user: User) {
+        userDao.insert(user)
+    }
+
+    fun getAllUsers(): LiveData<List<User>> {
+        return userDao.getAllUsers()
+    }
 }
