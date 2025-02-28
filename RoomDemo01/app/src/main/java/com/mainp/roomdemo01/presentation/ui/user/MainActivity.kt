@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var userRepository: UserRepository
     private lateinit var userAdapter: UserAdapter
     private val userList = mutableListOf<User>()
+    private var selectedUserId: Int? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +36,12 @@ class MainActivity : AppCompatActivity() {
         val userDao = UserDatabase.getDatabase(this).userDao()
         userRepository = UserRepository(userDao)
 
-        userAdapter = UserAdapter(userList)
+        userAdapter = UserAdapter(userList) { user ->
+            selectedUserId = user.id
+            binding.etName.setText(user.name)
+            binding.etAge.setText(user.age.toString())
+        }
+        binding.recyclerView.adapter = userAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = userAdapter
 
@@ -50,6 +57,30 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        binding.btnUpdate.setOnClickListener {
+            val name = binding.etName.text.toString()
+            val age = binding.etAge.text.toString().toIntOrNull() ?: 0
+
+            if (name.isNotEmpty() && age > 0) {
+                val user = User(id = selectedUserId!!, name = name, age = age)
+                updateUser(user)
+            } else {
+                Toast.makeText(this, "Vui lòng nhập đúng thông tin!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.btnDelete.setOnClickListener {
+            val name = binding.etName.text.toString()
+            val age = binding.etAge.text.toString().toIntOrNull() ?: 0
+
+            if (name.isNotEmpty() && age > 0) {
+                val user = User(id = selectedUserId!!, name = name, age = age)
+                deleteUser(user)
+            } else {
+                Toast.makeText(this, "Vui lòng nhập đúng thông tin!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         userRepository.getAllUsers().observe(this, Observer { users ->
             userList.clear()
             userList.addAll(users)
@@ -57,6 +88,17 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun updateUser(user: User) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            userRepository.updateUser(user)
+        }
+    }
+
+    private fun deleteUser(user: User) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            userRepository.deleteUser(user)
+        }
+    }
     private fun addUser(user: User) {
         lifecycleScope.launch(Dispatchers.IO) {
             userRepository.insertUser(user)

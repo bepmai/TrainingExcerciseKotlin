@@ -6,7 +6,7 @@ import com.mainp.roomdemo01.data.model.User
 import android.view.ViewGroup
 import com.mainp.roomdemo01.databinding.ItemUserBinding
 
-class UserAdapter(private val users: List<User>) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter(private val users: List<User>, private val onUserClick: (User) -> Unit) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         return UserViewHolder(
@@ -21,6 +21,10 @@ class UserAdapter(private val users: List<User>) : RecyclerView.Adapter<UserAdap
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = users[position]
         holder.bind(user)
+
+        holder.itemView.setOnClickListener {
+            onUserClick(user)
+        }
     }
 
     override fun getItemCount(): Int = users.size
