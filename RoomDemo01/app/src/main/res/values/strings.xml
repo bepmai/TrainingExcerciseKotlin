@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">RoomDemo01</string>
+    <string name="userName">Họ và tên</string>
+    <string name="age">Tuổi</string>
+</resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="30dp"
+        tools:context=".presentation.ui.user.MainActivity">
+
+        <TextView
+            style="@style/text_base_font_20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/userName"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edt"
+            android:paddingVertical="20dp"
+            android:hint="@string/userName"/>
+
+        <TextView
+            style="@style/text_base_font_20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/age"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edt"
+            android:paddingVertical="20dp"
+            android:hint="@string/age"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAddUser"
+            android:background="@drawable/bg_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Thêm"/>
+
+    </LinearLayout>
+</layout>
