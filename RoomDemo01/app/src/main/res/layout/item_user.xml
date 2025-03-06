@@ -37,5 +37,15 @@
             tools:text="@string/age"
             android:text="@{String.valueOf(itemUser.age)}"
             android:textSize="18sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnShow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_btn_show"
+            android:text="Xem"
+            android:textSize="18sp"/>
     </LinearLayout>
 </layout>

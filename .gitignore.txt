@@ -1,0 +1,2 @@
+EnglishDictionaryVer2/app/src/main/assets/dictionary_db.db
+/EnglishDictionary/app/src/main/assets/

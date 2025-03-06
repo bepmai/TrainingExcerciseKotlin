@@ -1,4 +1,4 @@
-package com.mainp.roomdemo01.presentation.ui.user
+package com.mainp.roomdemo01.presentation.ui.task
 
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.RecyclerView
@@ -6,7 +6,7 @@ import com.mainp.roomdemo01.data.model.User
 import android.view.ViewGroup
 import com.mainp.roomdemo01.databinding.ItemUserBinding
 
-class UserAdapter(private val users: List<User>, private val onUserClick: (User) -> Unit) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class TaskAdapter(private val users: List<User>, private val onUserClick: (User) -> Unit) : RecyclerView.Adapter<TaskAdapter.UserViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         return UserViewHolder(

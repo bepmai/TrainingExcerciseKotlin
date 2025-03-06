@@ -5,9 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.mainp.roomdemo01.data.dao.UserDao
+import com.mainp.roomdemo01.data.model.Task
 import com.mainp.roomdemo01.data.model.User
 
-@Database(entities = [User::class], version = 1)
+@Database(entities = [User::class, Task::class], version = 1)
 abstract class UserDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
 

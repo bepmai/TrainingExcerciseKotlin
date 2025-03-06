@@ -7,7 +7,7 @@ import com.mainp.roomdemo01.data.model.User
 
 class UserRepository(private val userDao: UserDao) {
 
-    suspend fun insertUser(user: User) {
+    fun insertUser(user: User) {
         userDao.insert(user)
     }
 
@@ -15,11 +15,11 @@ class UserRepository(private val userDao: UserDao) {
         return userDao.getAllUsers()
     }
 
-    suspend fun updateUser(user: User) {
+    fun updateUser(user: User) {
         userDao.updateUser(user)
     }
 
-    suspend fun deleteUser(user: User) {
+    fun deleteUser(user: User) {
         userDao.deleteUser(user)
     }
 
