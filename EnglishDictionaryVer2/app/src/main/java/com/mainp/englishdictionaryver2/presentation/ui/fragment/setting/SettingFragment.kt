@@ -21,12 +21,13 @@ class SettingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentSettingBinding.inflate(inflater, container, false)
 
         val sharedPreferences = requireContext().getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
         val savedSpeed = sharedPreferences.getFloat("speech_rate", 1.0f)
+
         binding.seekBar.progress = (savedSpeed * 50).toInt()
 
         textToSpeech = TextToSpeech(requireContext()) { status ->
@@ -54,6 +55,9 @@ class SettingFragment : Fragment() {
             textToSpeech?.speak("Test sound", TextToSpeech.QUEUE_FLUSH, null, null)
         }
 
+        val selectedRadio = sharedPreferences.getInt("selected_radio", R.id.rbNormal)
+        binding.radioGroup.check(selectedRadio)
+
         binding.radioGroup.setOnCheckedChangeListener { _, checkedId ->
             val fontSize = when (checkedId) {
                 R.id.rbSmall -> 12f
@@ -62,7 +66,12 @@ class SettingFragment : Fragment() {
                 R.id.rbExtraLarge -> 24f
                 else -> 16f
             }
-            sharedPreferences.edit().putFloat("font_size", fontSize).apply()
+
+            sharedPreferences.edit()
+                .putFloat("font_size", fontSize)
+                .putInt("selected_radio", checkedId)
+                .apply()
+
             updateFontSize(fontSize)
         }
         return binding.root
