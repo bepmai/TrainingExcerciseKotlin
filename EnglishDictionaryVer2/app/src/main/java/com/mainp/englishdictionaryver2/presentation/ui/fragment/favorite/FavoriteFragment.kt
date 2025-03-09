@@ -9,23 +9,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mainp.englishdictionaryver2.data.model.Favorite
-import com.mainp.englishdictionaryver2.data.model.Word
 import com.mainp.englishdictionaryver2.data.repository.DictionaryRepositoryImpl
 import com.mainp.englishdictionaryver2.data.room.WordDatabase
 import com.mainp.englishdictionaryver2.databinding.FragmentFavoriteBinding
 import com.mainp.englishdictionaryver2.presentation.ui.DictionaryActivity
-import com.mainp.englishdictionaryver2.presentation.ui.adapter.DictionaryAdapter
 import com.mainp.englishdictionaryver2.presentation.ui.adapter.FavoriteAdapter
 import com.mainp.englishdictionaryver2.presentation.viewmodel.DictionaryViewModel
 import com.mainp.englishdictionaryver2.presentation.viewmodel.DictionaryViewModelFactory
-import kotlinx.coroutines.launch
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 class FavoriteFragment : Fragment() {
 
     private lateinit var binding: FragmentFavoriteBinding
@@ -63,14 +55,18 @@ class FavoriteFragment : Fragment() {
             onFavoriteClick = { favorite -> (favorite)
                 viewModel.deleteFavorite(favorite)
                 Toast.makeText(requireContext(), "Đã xoa", Toast.LENGTH_SHORT).show()
-            })
+            },
+            context = requireContext()
+        )
         binding.recyclerView.adapter = favoriteAdapter
 
         viewModel.factory.observe(viewLifecycleOwner) { favoriteList ->
             favoriteAdapter.updateData(favoriteList)
         }
-
-
         return binding.root
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        favoriteAdapter.releaseTextToSpeech()
     }
 }

@@ -1,9 +1,7 @@
 package com.mainp.englishdictionaryver2.data.model
 
-import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import android.util.Base64
 import java.io.Serializable
 
 

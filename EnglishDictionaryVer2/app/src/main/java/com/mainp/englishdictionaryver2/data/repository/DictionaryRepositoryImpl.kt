@@ -8,6 +8,7 @@ import com.mainp.englishdictionaryver2.data.model.Word
 
 class DictionaryRepositoryImpl(private val wordDao: WordDao, private val factoryDao: FavoriteDao):DictionaryRepository {
     override fun getAllWord(): LiveData<List<Word>> = wordDao.getAllWords()
+
     override suspend fun insertFavorite(favorite: Favorite){
         factoryDao.insertFavorite(favorite)
     }

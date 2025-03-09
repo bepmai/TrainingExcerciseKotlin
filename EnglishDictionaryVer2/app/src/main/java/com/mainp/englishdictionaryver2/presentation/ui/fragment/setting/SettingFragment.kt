@@ -1,53 +1,84 @@
 package com.mainp.englishdictionaryver2.presentation.ui.fragment.setting
 
+import android.content.Context
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import com.mainp.englishdictionaryver2.R
+import com.mainp.englishdictionaryver2.databinding.FragmentSettingBinding
+import java.util.Locale
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 class SettingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentSettingBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var textToSpeech: TextToSpeech? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_setting, container, false)
+
+        binding = FragmentSettingBinding.inflate(inflater, container, false)
+
+        val sharedPreferences = requireContext().getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
+        val savedSpeed = sharedPreferences.getFloat("speech_rate", 1.0f)
+        binding.seekBar.progress = (savedSpeed * 50).toInt()
+
+        textToSpeech = TextToSpeech(requireContext()) { status ->
+            if (status == TextToSpeech.SUCCESS) {
+                textToSpeech?.language = Locale.US
+                textToSpeech?.setSpeechRate(savedSpeed)
+            }
+        }
+
+        binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                val speed = progress / 50f
+                textToSpeech?.setSpeechRate(speed)
+                binding.tvSpeed.text = String.format("%.1f", speed)
+                val editor = sharedPreferences.edit()
+                editor.putFloat("speech_rate", speed)
+                editor.apply()
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+        })
+
+        binding.ivSound.setOnClickListener {
+            textToSpeech?.speak("Test sound", TextToSpeech.QUEUE_FLUSH, null, null)
+        }
+
+        binding.radioGroup.setOnCheckedChangeListener { _, checkedId ->
+            val fontSize = when (checkedId) {
+                R.id.rbSmall -> 12f
+                R.id.rbNormal -> 16f
+                R.id.rbLarge -> 20f
+                R.id.rbExtraLarge -> 24f
+                else -> 16f
+            }
+            sharedPreferences.edit().putFloat("font_size", fontSize).apply()
+            updateFontSize(fontSize)
+        }
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SettingFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SettingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun updateFontSize(size: Float) {
+        binding.tvSpeed.textSize = size
+        requireActivity().getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
+            .edit()
+            .putFloat("font_size", size)
+            .apply()
+    }
+
+    override fun onDestroy() {
+        textToSpeech?.stop()
+        textToSpeech?.shutdown()
+        super.onDestroy()
     }
 }

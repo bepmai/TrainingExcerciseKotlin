@@ -1,15 +1,12 @@
 package com.mainp.englishdictionaryver2.presentation.ui.fragment.dictionary
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import androidx.recyclerview
-    .widget.LinearLayoutManager
 import com.mainp.englishdictionaryver2.data.model.Word
 import com.mainp.englishdictionaryver2.data.repository.DictionaryRepositoryImpl
 import com.mainp.englishdictionaryver2.data.room.WordDatabase
@@ -19,22 +16,14 @@ import com.mainp.englishdictionaryver2.presentation.viewmodel.DictionaryViewMode
 import com.mainp.englishdictionaryver2.presentation.viewmodel.DictionaryViewModelFactory
 import androidx.fragment.app.viewModels
 import com.mainp.englishdictionaryver2.presentation.ui.DictionaryActivity
-import android.util.Base64
+import androidx.appcompat.widget.SearchView
 import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
-import com.mainp.englishdictionaryver2.data.dao.FavoriteDao
 import com.mainp.englishdictionaryver2.data.model.Favorite
-import kotlinx.coroutines.launch
-import kotlin.math.log
-
-
-private lateinit var dictionaryAdapter: DictionaryAdapter
-private lateinit var binding: FragmentDictionaryBinding
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 
 class DictionaryFragment : Fragment() {
+    private lateinit var dictionaryAdapter: DictionaryAdapter
+    private lateinit var binding: FragmentDictionaryBinding
+
     private val viewModel by viewModels<DictionaryViewModel> {
         DictionaryViewModelFactory(
             DictionaryRepositoryImpl(
@@ -46,24 +35,14 @@ class DictionaryFragment : Fragment() {
         )
     }
 
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDictionaryBinding.inflate(inflater, container, false)
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.layoutManager =
+            androidx.recyclerview.widget.LinearLayoutManager(requireContext())
 
 //        viewModel.words.observe(viewLifecycleOwner) { wordList ->
 //            Log.d("FragmentDictionary", "Danh sách từ: $wordList")
@@ -84,10 +63,21 @@ class DictionaryFragment : Fragment() {
             },
             onFavoriteClick = { word ->
                 addToFavorite(word)
-            }
+            },
+            context = requireContext(),
         )
         binding.recyclerView.adapter = dictionaryAdapter
 
+        binding.svSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                dictionaryAdapter.filterList(newText.orEmpty())
+                return true
+            }
+        })
         viewModel.words.observe(viewLifecycleOwner) { wordList ->
             dictionaryAdapter.updateData(wordList)
         }
@@ -108,14 +98,9 @@ class DictionaryFragment : Fragment() {
         Toast.makeText(requireContext(), "Đã thêm vào danh sách yêu thích", Toast.LENGTH_SHORT).show()
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DictionaryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        dictionaryAdapter.releaseTextToSpeech()
     }
 }
